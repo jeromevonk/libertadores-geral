@@ -27,13 +27,6 @@ function getStandings(matches) {
 }
 
 // -----------------------------------------------
-// Get the teams and badges
-// -----------------------------------------------
-function getTeamAndBadges() {
-
-}
-
-// -----------------------------------------------
 // Iterate by round in crescent order
 // -----------------------------------------------
 function iterateByRounds(standings, matches) {
@@ -69,7 +62,7 @@ function convertStandingsToArray(standings) {
 }
 
 function emptyStandings() {
-  return { "points": 0, "pointsLost": 0, "matches": 0, "victories": 0, "draws": 0, "losses": 0, "goalsFor": 0, "goalsAgainst": 0, "goalDifference": 0, "percent": 0, "badge": "" }
+  return { "points": 0, "pointsLost": 0, "matches": 0, "victories": 0, "draws": 0, "losses": 0, "goalsFor": 0, "goalsAgainst": 0, "goalDifference": 0, "percent": 0, "badge": "", "initials": "" }
 }
 
 function calculateMatch(standings, match) {
@@ -79,13 +72,13 @@ function calculateMatch(standings, match) {
   if (false == homeTeam in standings) {
     standings[homeTeam] = emptyStandings()
     standings[homeTeam].badge = match.homeTeamBadge
-    console.log(`Adding ${homeTeam} to standings`)
+    standings[homeTeam].initials = match.homeTeamInitials
   } 
     
   if (false == awayTeam in standings) {
     standings[awayTeam] = emptyStandings()
     standings[awayTeam].badge = match.awayTeamBadge
-    console.log(`Adding ${awayTeam} to standings`)
+    standings[awayTeam].initials = match.awayTeamInitials
   }
 
   if (started) {
@@ -137,14 +130,4 @@ function calculateStandings(team, score, oponentScore) {
   team.goalsFor += results.goalsFor
   team.goalsAgainst += results.goalsAgainst
   team.goalDifference += results.goalDifference
-}
-
-function getMatchesInDescendingOrder(matches) {
-  // Flatten the matches
-  const matchesArray = Object.values(matches).flat();
-
-  // Sort by date descending
-  return matchesArray
-    .filter(item => item.started)
-    .sort((a, b) => new Date(b.date) - new Date(a.date));
 }

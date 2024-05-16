@@ -121,8 +121,6 @@ function StandingsTableHead(props) {
               padding={headCell.disablePadding ? 'none' : 'normal'}
               sortDirection={orderBy === headCell.id ? order : false}
               sx={{backgroundColor: headCell.backgroundColor }}
-                
-              // sx={{ width: '10px' }} TODO
             >
               <TableSortLabel
                 active={orderBy === headCell.id}
@@ -161,9 +159,10 @@ export default function StandingsTable(props) {
   const [selected, setSelected] = React.useState([]);
 
   const rows = props.data || [];
+  console.log(rows)
 
   const CustomTableCell = styled(TableCell)({
-    "border-left": '1px dotted grey',
+    "borderLeft": '1px dotted grey',
   });
 
   // ----------------------------------------
@@ -231,7 +230,7 @@ export default function StandingsTable(props) {
                       {
                         // Team
                       }
-                      <TableCell align="left"><Team name={row.team} badge={row.badge}/></TableCell>
+                      <TableCell align="left"><Team name={largeScreen.width ? row.team : row.initials} badge={row.badge}/></TableCell>
                       {
                         // Points
                       }
