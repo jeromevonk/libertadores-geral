@@ -17,9 +17,6 @@ import {
 } from 'src/helpers'
 
 
-const BACKGROUND_COLOR_HEAD = "#ffffff";
-const BACKGROUND_COLOR = "#fefefe";
-
 function StandingsTableHead(props) {
   const {
     order,
@@ -49,14 +46,12 @@ function StandingsTableHead(props) {
       numeric: false,
       disablePadding: false,
       label: 'PTS',
-      backgroundColor: BACKGROUND_COLOR_HEAD,
     },
     {
       id: 'matches',
       numeric: false,
       disablePadding: false,
       label: 'J',
-      backgroundColor: BACKGROUND_COLOR_HEAD,
     },
     {
       id: 'victories',
@@ -69,7 +64,6 @@ function StandingsTableHead(props) {
       numeric: false,
       disablePadding: false,
       label: 'E',
-      backgroundColor: BACKGROUND_COLOR_HEAD,
     },
     {
       id: 'losses',
@@ -83,7 +77,6 @@ function StandingsTableHead(props) {
       disablePadding: false,
       label: 'GP',
       onlyLargeScreen: true,
-      backgroundColor: BACKGROUND_COLOR_HEAD,
     },
     {
       id: 'goalsAgainst',
@@ -97,7 +90,6 @@ function StandingsTableHead(props) {
       numeric: false,
       disablePadding: false,
       label: 'SG',
-      backgroundColor: BACKGROUND_COLOR_HEAD,
     },
     {
       id: 'percent',
@@ -159,7 +151,6 @@ export default function StandingsTable(props) {
   const [selected, setSelected] = React.useState([]);
 
   const rows = props.data || [];
-  console.log(rows)
 
   const CustomTableCell = styled(TableCell)({
     "borderLeft": '1px dotted grey',
@@ -263,7 +254,7 @@ export default function StandingsTable(props) {
                       }
                       {
                         largeScreen.width &&
-                        <CustomTableCell align="center">{row.goalsAgainst}</CustomTableCell>
+                        <CustomTableCell align="center">{row.goalsFor}</CustomTableCell>
                       }
                       {
                         // Goal difference
