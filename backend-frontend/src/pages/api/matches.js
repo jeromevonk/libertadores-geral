@@ -1,5 +1,3 @@
-// pages/api/globoEsporte.js
-
 export default async function handler(req, res) {
   try {
     // Object to store the results
@@ -20,29 +18,28 @@ export default async function handler(req, res) {
             return response.json();
           })
           .then(data => {
-            // Transform and 
             const matches = [];
-              try {
-                for (const item of data) {
-                  matches.push({
-                    homeTeam: item.equipes.mandante.nome_popular,
-                    homeTeamBadge: item.equipes.mandante.escudo,
-                    homeTeamInitials: item.equipes.mandante.sigla,
-                    awayTeam: item.equipes.visitante.nome_popular,
-                    awayTeamBadge: item.equipes.visitante.escudo,
-                    awayTeamInitials: item.equipes.visitante.sigla,
-                    homeScore: item.placar_oficial_mandante,
-                    awayScore: item.placar_oficial_visitante,
-                    date: item.data_realizacao.substring(0, 10) || null,
-                    started: item.jogo_ja_comecou
-                  })
-                }
-              } catch(e) {
-                console.log(`Something wrong with match between ${item.equipes.mandante.nome_popular} and ${item.visitante.mandante.nome_popular}`)
+
+            try {
+              for (const item of data) {
+                matches.push({
+                  homeTeam: item.equipes.mandante.nome_popular,
+                  homeTeamBadge: item.equipes.mandante.escudo,
+                  homeTeamInitials: item.equipes.mandante.sigla,
+                  awayTeam: item.equipes.visitante.nome_popular,
+                  awayTeamBadge: item.equipes.visitante.escudo,
+                  awayTeamInitials: item.equipes.visitante.sigla,
+                  homeScore: item.placar_oficial_mandante,
+                  awayScore: item.placar_oficial_visitante,
+                  date: item.data_realizacao.substring(0, 10) || null,
+                  started: item.jogo_ja_comecou
+                })
               }
-            
-            
-            // store  with the corresponding key
+            } catch (e) {
+              console.log(`Something wrong with match between ${item.equipes.mandante.nome_popular} and ${item.visitante.mandante.nome_popular}`)
+            }
+
+            // Store within the corresponding key
             responseData[i] = matches;
           })
           .catch(error => {
