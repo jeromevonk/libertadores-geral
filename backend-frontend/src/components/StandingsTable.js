@@ -95,6 +95,7 @@ function StandingsTableHead(props) {
               <TableSortLabel
                 active={orderBy === headCell.id}
                 direction={orderBy === headCell.id ? order : 'asc'}
+                hideSortIcon='true'
                 onClick={createSortHandler(headCell.id)}
                 sx={{
                   flexDirection: 'row-reverse',
